@@ -1,0 +1,47 @@
+{% extends 'admin_layout.html' %}
+
+{% block admin-content %}
+
+    <div class="columns">
+        <div class="column is-three-quarters">
+            <p class="subtitle">
+                List of all roles
+            </p>
+        </div>
+        <div class="column">
+            <a class="button is-primary" href="{% url 'createRole' %}">
+                Add Role
+            </a>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column is-full">
+            <table class="table is-fullwidth">
+                <thead>
+                <th>Name</th>
+                <th>Permissions</th>
+                <th></th>
+                </thead>
+                <tbody>
+                {% for role in roles %}
+                    <tr>
+                        <td>{{ role.name }}</td>
+                        <td>{{ role.permissions }}</td>
+                        <td>
+                            <a class="button is-primary" href="{% url 'permissions' role.id %}">Manage
+                                Permissions</a>
+                            <a class="button is-danger" href="{% url 'deleteRole' role.id %}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

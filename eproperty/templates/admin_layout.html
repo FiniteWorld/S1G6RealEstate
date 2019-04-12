@@ -1,0 +1,43 @@
+<title>Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/flexslider.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/icomoon.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{% block content %}
+    <div class="section">
+
+        <div class="columns">
+
+            <div class="column is-3">
+                <aside class="menu">
+                    <p class="menu-label">
+                        General
+                    </p>
+                    <ul class="menu-list">
+                        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                    </ul>
+                    <p class="menu-label">
+                        Administration
+                    </p>
+                    <ul class="menu-list">
+                        <li><a href="{% url 'users' %}">User Accounts</a></li>
+                        <li><a href="{% url 'roles' %}">System Roles</a></li>
+                        <li><a href="{% url 'features' %}">System Features/Privileges</a></li>
+                    </ul>
+                </aside>
+            </div>
+
+            <div class="column is-9">
+                {% block admin-content %}
+                {% endblock %}
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

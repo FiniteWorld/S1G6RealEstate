@@ -1,0 +1,67 @@
+{% extends 'admin_layout.html' %}
+
+{% block admin-content %}
+
+    <div class="columns">
+        <div class="column is-three-quarters">
+            <p class="subtitle">
+                List of all users
+            </p>
+        </div>
+        <div class="column">
+            <a class="button is-primary" href="{% url 'createUser' %}">
+                Add User
+            </a>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column is-full">
+            <table class="table is-fullwidth">
+                <thead>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Username</th>
+                    <th>Active</th>
+                    <th>Roles</th>
+                    <th>Account Expiry</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.user.first_name | add:" " | add:user.user.last_name }}</td>
+                            <td>{{ user.user.email }}</td>
+                            <td>{{ user.user.username }}</td>
+                            <td>{%  if user.user.is_active %}
+                                <span class="icon has-text-success">
+                                  <i class="fa fa-check-square"></i>
+                                </span>
+                                {% endif %}
+                            </td>
+                            <td>{{ user.roles }}</td>
+                            <td>{{ user.account_expiry_date }}</td>
+                            <td>
+                                <a class="button is-warning" href="{% url 'updateUser' user.user.id %}">Edit</a>
+                                <a class="button is-primary" href="{% url 'createRole' user.user.id %}">Assign Role</a>
+                                <a class="button is-light" href="{% url 'enableUser' user.user.id %}">
+                                    {% if user.user.is_active %}
+                                    Disable
+                                    {% else %}
+                                    Enable
+                                    {% endif %}
+                                </a>
+                                <a class="button is-danger" href="{% url 'deleteUser' user.user.id %}">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

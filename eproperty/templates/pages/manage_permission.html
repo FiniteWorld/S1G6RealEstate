@@ -1,0 +1,37 @@
+{% extends 'admin_layout.html' %}
+
+{% block admin-content %}
+
+    <div class="columns">
+        <div class="column is-three-quarters">
+            <p class="subtitle">
+                Assign Features to this Role
+            </p>
+        </div>
+    </div>
+
+    <div class="columns">
+
+        <div class="column is-three-quarters">
+            <p>
+                Assign Features to {{ role }}.
+            </p>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <div class="field is-grouped is-grouped-centered">
+                  <p class="control">
+                    <input type="submit" value="Submit" class="button is-danger">
+                  </p>
+                  <p class="control">
+                    <a class="button is-light" href="{% url 'roles' %}">
+                      Cancel
+                    </a>
+                  </p>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}

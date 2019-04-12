@@ -1,0 +1,36 @@
+{% extends 'admin_layout.html' %}
+
+{% block admin-content %}
+
+    <div class="columns">
+        <div class="column is-three-quarters">
+            <p class="subtitle">
+                Are you sure you want to delete this role?
+            </p>
+        </div>
+    </div>
+
+    <div class="columns">
+
+        <div class="column is-three-quarters">
+            <p>
+                You are about to delete {{ object.sysFeature }}.
+            </p>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="field is-grouped is-grouped-centered">
+                    <p class="control">
+                        <input type="submit" value="Delete" class="button is-danger">
+                    </p>
+                    <p class="control">
+                        <a class="button is-light" href="{% url 'roles' %}">
+                            Cancel
+                        </a>
+                    </p>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}
